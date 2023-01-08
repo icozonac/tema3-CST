@@ -1,0 +1,47 @@
+<div class="bg">
+  <div class="container">
+    <form>
+      <h1>Tema 3</h1>
+      <label for="items"><b>Item: </b></label>
+      <input class="input-item" nz-input #itemInput required />
+      <button
+        class="add-btn"
+        nz-button
+        nzType="primary"
+        (click)="addItem(itemInput.value)"
+      >
+        Add
+      </button>
+      <div class="second-container">
+        <label for="filter"><b>Filter: </b></label>
+        <input nz-input [(ngModel)]="filterText" name="filter" />
+        <button nz-button nzType="default" (click)="applyFilter()">
+          Filter
+        </button>
+
+        <button nz-button nzType="default" (click)="sortItems()">Sort</button>
+      </div>
+    </form>
+    <div class="result">
+      <div>
+        <h4>Filtered items</h4>
+        <ol>
+          <li
+            *ngFor="let item of filteredItems"
+            [ngClass]="{ filtered: item.includes(filterText) }"
+          >
+            {{ item }}
+          </li>
+        </ol>
+      </div>
+      <div>
+        <h4>Sorted items</h4>
+        <ol>
+          <li *ngFor="let item of items">
+            {{ item }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
